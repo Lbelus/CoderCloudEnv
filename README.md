@@ -208,7 +208,7 @@ $ cat ~/.ssh/id_rsa.pub
 # and paste
 ```
 
-###set up Vscode 
+### set up Vscode 
 
 1. Download vscode
 2. Set up Sync via github account to synchronise extension and parameters 
