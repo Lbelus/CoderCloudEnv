@@ -48,7 +48,8 @@ Connect to server (root is default user) :
 - If on ``windows`` open ``Powershell`` and type in : 
     - ssh root@server_Ip_Adress
         - Password
-        - or setup an ssh key : https://www.linuxbabe.com/linux-server/ssh-windows 
+        - or setup an SSH key : https://www.linuxbabe.com/linux-server/ssh-windows 
+
 
 Alternative to kamatera :
 
@@ -59,6 +60,14 @@ Alternative to kamatera :
 
 ## Setup your Codebase on cloud
 
+
+### Google drive with google-drive-ocamlfuse
+
+
+
+
+### OneDrive with rclone
+recommanded usage : archive for old project and files
 ```
 For this part we are going to mount OneDrive on your Ubuntu server using rclone
 This is an example, OneDrive has some limitation and was not made for this case usage.
@@ -130,7 +139,6 @@ $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
 
 # Congratulation, it is done. 
 ```
-
 ## Setup Docker on your remote server
 
 1. follow this: https://docs.docker.com/engine/install/ubuntu/
@@ -171,8 +179,6 @@ $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
     $ docker volume prune
     ```
 
-
-
 ## Setup your SSH
 ### QWASAR
 
@@ -206,6 +212,25 @@ $ cat ~/.ssh/id_rsa.pub
 # ->*SSH and GPG section 
 # ->New SSH key button
 # and paste
+```
+
+### Access you server from window without password: 
+
+```bash
+# open powershell and generate ssh
+$ ssh-keygen -t rsa -b 4096
+$
+$
+$
+# copy output from
+$ cat .ssh/id_rsa.pub
+# create authorized host list
+$ sudo nano ~/.ssh/authorized_keys
+# copy SSH public key into nano
+# Ctrl+O then press Enter to save. Ctrl+X to close.
+# permission on file (IMPORTANT)
+$ sudo chmod 600 ~/.ssh/authorized_keys
+$ Exit
 ```
 
 ### set up Vscode 
