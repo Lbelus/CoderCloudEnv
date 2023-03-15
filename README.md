@@ -131,20 +131,6 @@ $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
 # Congratulation, it is done. 
 ```
 
-## Setup your SSH
-### QWASAR
-
-1. Download SSH Keys from upskill account settings
-2. Unzip and move them into ``~/.ssh``
-3. Run ``chmod 600 ~/.ssh/ssh_key_priv``
-4. Add ``~/.ssh/config``
-```
-Host git.us.qwasar.io
-  User git
-  IdentityFile ~/.ssh/ssh_key_priv
-```
-5. Try git clone git@git.us.qwasar.io:xxx/xxx.git
-
 ## Setup Docker on your remote server
 
 1. follow this: https://docs.docker.com/engine/install/ubuntu/
@@ -184,6 +170,22 @@ Host git.us.qwasar.io
     $ docker system prune -a
     $ docker volume prune
     ```
+
+
+
+## Setup your SSH
+### QWASAR
+
+1. Download SSH Keys from upskill account settings
+2. Unzip and move them into ``~/.ssh``
+3. Run ``chmod 600 ~/.ssh/ssh_key_priv``
+4. Add ``~/.ssh/config``
+```
+Host git.us.qwasar.io
+  User git
+  IdentityFile ~/.ssh/ssh_key_priv
+```
+5. Try git clone git@git.us.qwasar.io:xxx/xxx.git
 
 
 ### PERSONAL SSH for github
