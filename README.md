@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This solution works for students who wish to setup an environment to improve their working condition.
+This solution is suitable for students who want to create a setup that enhances their working conditions.
 
 -> Current cost in 2023 : 6$ or 4$ per month.
 
@@ -277,7 +277,7 @@ $ Exit
 1. run setup
 1. Connect with account
 1. Go into preferences
-    - tab ``google drive 
+    - tab ``google drive``
     - select ``mirror files``
 
 ## Symlink to navigate into vscode on windows
