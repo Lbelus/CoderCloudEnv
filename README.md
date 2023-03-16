@@ -244,10 +244,31 @@ $ sudo chmod 600 ~/.ssh/authorized_keys
 $ Exit
 ```
 
-### Set up Vscode 
+# On your desktop
+
+## Set up Vscode 
 
 1. Download vscode
 2. Set up Sync via github account to synchronise extension and parameters 
+
+## Set up OneDrive on windows
+
+1. Ddl onedrive
+1. Run setup
+1. Connect with account
+
+## Set up Goggle drive on windows
+1. Ddl Google Drive desktop client 
+1. run setup
+1. Connect with account
+1. Go into preferences
+    - tab ``google drive 
+    - select ``mirror files``
+
+## Symlink to navigate into vscode on windows
+1. Create a dir to hold symlinks to every cloud storage solution
+1. Open prowershell ad an administrator 
+1. ``$ New-Item -Path new_symlink_name -ItemType SymbolicLink -Value path_to_directory``
 
 
 ### The Core Team
