@@ -87,6 +87,7 @@ $ google-drive-ocamlfuse -headless -label me -id ##yourClientID##.apps.googleuse
 
 # Create a dir
 mkdir ~/google-drive
+
 # Mount the drive
 google-drive-ocamlfuse -label me ~/google-drive
 ```
@@ -115,36 +116,42 @@ On your server :
 ```bash
 # Download the latest version, current is 1.62.0
 $ wget https://downloads.rclone.org/v1.xx.x/rclone-v1.xx.x-linux-amd64.deb
+
 # Install 
 $ sudo apt install ./rclone-v1.xx.x-linux-amd64.deb
 
 # Configue your drive
 $ rclone config
+
 # Name your drive
 $ onedrive
 
 # Seek Microsoft OneDrive and its number: XX type the number in the terminal
-
 $ XX
+
 # Client id
 $
+
 # Client secret
 $
+
 # Option region
 $ 1
+
 # Edit advanced config
 $
 
 #edit config
-	#if you are on headless machine abd FOLLOW THE PROCEDURE INDICATED ON YOUR TERMINAL https://rclone.org/remote_setup/
+	# If you are on headless machine abd FOLLOW THE PROCEDURE INDICATED ON YOUR TERMINAL https://rclone.org/remote_setup/
 	$ n
-	#if you are on remote desktop 
+	# If you are on a desktop 
 	$ y
 
 # ON YOUR DESKTOP
 # Procedure at https://rclone.org/remote_setup/
-# Need to use your desktop connect using hte command 
+# Need to use your desktop connect using the command 
 $ rclone authorize "OneDrive"
+
 # Authenticate into website using web browser
 # Copy the result and paste it in your remote server
 
@@ -156,10 +163,12 @@ $ mkdir ~/OneDrive
 # Mount the drive 
 # Command may vary depending on your cloud storage solution
 # Consult :  https://rclone.org/remote_setup/
+
 # For OneDrive only :
 $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
 
-# Congratulation, it is done. 
+# Create .sh file to hold that last command, you will have to run each time your reboot your server
+
 ```
 ## Setup Docker on your remote server
 
@@ -234,14 +243,19 @@ $ ssh-keygen -t rsa -b 4096
 $
 $
 $
+
 # Copy output from
 $ cat .ssh/id_rsa.pub
+
 # Create authorized host list
 $ sudo nano ~/.ssh/authorized_keys
+
 # Copy SSH public key into nano
 # Ctrl+O then press Enter to save. Ctrl+X to close.
+
 # Permission on file (IMPORTANT)
 $ sudo chmod 600 ~/.ssh/authorized_keys
+
 $ Exit
 ```
 
