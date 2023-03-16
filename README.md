@@ -272,7 +272,7 @@ $ Exit
 1. Run setup
 1. Connect with account
 
-## Set up Goggle drive on windows
+## Set up Google drive on windows
 1. Ddl Google Drive desktop client 
 1. run setup
 1. Connect with account
