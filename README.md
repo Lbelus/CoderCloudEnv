@@ -178,7 +178,7 @@ $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
 
 3. Manage your image and containers : https://www.freecodecamp.org/news/where-are-docker-images-stored-docker-container-paths-explained/#:~:text=The%20storage%20location%20of%20Docker%20images%20and%20containers&text=Ubuntu%3A%20%2Fvar%2Flib%2F,Windows%3A%20C%3A%5CProgramData%5CDockerDesktop
 
-4. Get quickly started with ruby on Docker on your remote server : 
+4. Get quickly started with ruby using Docker on your remote server : 
     
     ```bash
 
@@ -212,6 +212,30 @@ $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
         $ docker volume prune
     ```
 
+5. Get quickly started with llvm and c using Docker on your remote server : 
+	- create a my_test.c file with a printf("hello word")
+	- create a dockerfile
+	```Dockerfile
+		FROM ubuntu:latest
+		RUN apt-get update && apt-get install -y llvm clang
+	```
+	- from directory run 
+	```bash
+		# Build the Docker image
+		$ docker build -t my-llvm-image .
+		
+		# If you encounter an issue check image names
+		$ docker images
+		
+		# compile your C programs by running a new container
+		$ docker run -v ~/path_to_directory:/c my_llvm_image clang /c/my_test.c -o /c/my_test
+		
+		# Find container ID and copy it
+		$ docker ps -a
+		
+		# Extract the executable file
+		$ docker cp <container_id>:/c/my_test /path_to_directory
+	```
 ## Setup your SSH
 
 ### PERSONAL SSH for github
