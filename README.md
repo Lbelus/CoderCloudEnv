@@ -213,13 +213,13 @@ $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
     ```
 
 5. Get quickly started with llvm and c using Docker on your remote server : 
-	- create a my_test.c file with a printf("hello word")
-	- create a dockerfile
+	- Create a my_test.c file with a printf("hello word")
+	- Create a dockerfile
 	```Dockerfile
 		FROM ubuntu:latest
 		RUN apt-get update && apt-get install -y llvm clang
 	```
-	- from directory run 
+	- From directory run 
 	```bash
 		# Build the Docker image
 		$ docker build -t my-llvm-image .
