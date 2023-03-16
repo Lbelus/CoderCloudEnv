@@ -25,7 +25,7 @@ This solution works for students who wish to setup an environment to improve the
 - Git (to push on selected projects using a milestone logic);
 - You can use any pc or mac with vscode (using a synced account);
 
-You can use any PC and be operational in a matter of minutes, your code is remote and safe, your coding environment clean and reproductible.
+You can use any PC and be operational in a matter of minutes, your code is remote and safe, your coding environment is clean and reproductible.
 
 ## Create your server with kamatera
 
