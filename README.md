@@ -217,7 +217,7 @@ $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
 ### PERSONAL SSH for github
 
 ``$ `` means press enter
-
+On your Ubuntu server:
 ```bash
 $ ssh-keygen -t rsa
 $ y
