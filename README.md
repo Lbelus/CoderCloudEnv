@@ -236,6 +236,43 @@ $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
 		# Extract the executable file
 		$ docker cp <container_id>:/c/my_test /path_to_directory
 	```
+
+## Mirror your Google-drive work_folder with your docker host volume
+
+1. Create my_mirror.sh file and copy following code 
+```bash
+#!/bin/bash
+
+# Define the source and target directories
+SRC_DIR="google-drive/work_folder/"
+TARGET_DIR="Dockerfolder/host/"
+
+# Create the target directory if it doesn't exist
+if [ ! -d "$TARGET_DIR" ]; then
+  mkdir -p "$TARGET_DIR"
+fi
+
+# Mirror the repository
+rsync -av --delete --relative "$SRC_DIR" "$TARGET_DIR"
+
+# rsync options:
+# -a: archive mode, preserves permissions, ownership, timestamps, etc.
+# -v: verbose mode, shows the files being copied
+# --delete: delete files in the target directory that are not present in the source directory
+# --relative: use relative paths to preserve the directory structure
+# "$SRC_DIR": the source directory (only includes the work_folder directory)
+# "$TARGET_DIR": the target directory
+```
+make you .sh an executable
+```
+chmod +x my_mirror.sh 
+```
+run it
+```
+./my_mirror.sh.
+```
+run the executable each time you need to sync your work_floder with your container volume. 
+
 ## Setup your SSH
 
 ### PERSONAL SSH for github
