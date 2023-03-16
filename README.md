@@ -234,7 +234,7 @@ $ cat ~/.ssh/id_rsa.pub
 # and paste
 ```
 
-### Access you server from window without password: 
+### Access you server from windows without password: 
 
 ``$ ``  means press enter
 ```bash
