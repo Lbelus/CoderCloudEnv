@@ -62,9 +62,9 @@ Alternative to kamatera :
 
 ### Google drive with google-drive-ocamlfuse
 
-recommanded usage : Working on your current projects
+Recommanded usage : Working on your current projects
 
-usefull links:
+useful links:
 - https://github.com/astrada/google-drive-ocamlfuse/wiki/Installation
 - https://github.com/astrada/google-drive-ocamlfuse/wiki/Headless-Usage-&-Authorization
 
@@ -88,7 +88,7 @@ google-drive-ocamlfuse -label me ~/google-drive
 
 ### OneDrive with rclone
 
-recommanded usage : archive for old project and files
+Recommanded usage : archive for old project and files
 ```
 For this part we are going to mount OneDrive on your Ubuntu server using rclone
 This is an example, OneDrive has some limitation and was not made for this case usage.
@@ -96,7 +96,7 @@ Feel free to use any other solution.
 ```
 ``rclone`` works with a manner of cloud storage solution including ``google drive``. 
 
-Usefull links:
+Useful links:
 - https://rclone.org/onedrive/
 - https://askubuntu.com/questions/804421/mounting-onedrive-on-ubuntu-linux-command-line
 
