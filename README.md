@@ -25,7 +25,7 @@ This solution works for students who wish to setup an environment to improve the
 - Git (to push on selected projects using a milestone logic);
 - You can use any pc or mac with vscode (using a synced account);
 
-You can use whatever PC and be operational in a matter of minutes, your code is remote and safe, your coding environment clean and reproductible.
+You can use any PC and be operational in a matter of minutes, your code is remote and safe, your coding environment clean and reproductible.
 
 ## Create your server with kamatera
 
@@ -59,12 +59,17 @@ Alternative to kamatera :
 
 ## Setup your Codebase on cloud
 
+```
+For this part we are going to mount OneDrive and google drive on your Ubuntu server using rclone and google-drive-ocamlfuse.
+This is an example, OneDrive has some limitation and was not made for this case usage, same for google drive.
+Please feel free to use any other solution.
+```
 
 ### Google drive with google-drive-ocamlfuse
 
 Recommanded usage : Working on your current projects
 
-useful links:
+Useful links:
 - https://github.com/astrada/google-drive-ocamlfuse/wiki/Installation
 - https://github.com/astrada/google-drive-ocamlfuse/wiki/Headless-Usage-&-Authorization
 
@@ -74,26 +79,22 @@ $ sudo add-apt-repository ppa:alessandro-strada/ppa
 $ sudo apt-get update
 $ sudo apt-get install google-drive-ocamlfuse
 
-# follow steps on https://github.com/astrada/google-drive-ocamlfuse/wiki/Headless-Usage-&-Authorization you will have to create Oauth client ID.
+# Follow steps on https://github.com/astrada/google-drive-ocamlfuse/wiki/Headless-Usage-&-Authorization you will have to create Oauth client ID.
 
 $ google-drive-ocamlfuse -headless -label me -id ##yourClientID##.apps.googleusercontent.com -secret ###yoursecret##### 
-#click on link and authorize 
-#copy verification code into terminal
+# Click on link and authorize 
+# Copy verification code into terminal
 
-# create a dir
+# Create a dir
 mkdir ~/google-drive
-# mount the drive
+# Mount the drive
 google-drive-ocamlfuse -label me ~/google-drive
 ```
 
 ### OneDrive with rclone
 
 Recommanded usage : archive for old project and files
-```
-For this part we are going to mount OneDrive on your Ubuntu server using rclone
-This is an example, OneDrive has some limitation and was not made for this case usage.
-Feel free to use any other solution.
-```
+
 ``rclone`` works with a manner of cloud storage solution including ``google drive``. 
 
 Useful links:
@@ -125,13 +126,13 @@ $ onedrive
 # Seek Microsoft OneDrive and its number: XX type the number in the terminal
 
 $ XX
-# client id
+# Client id
 $
-# client secret
+# Client secret
 $
-#option region
+# Option region
 $ 1
-#edit advanced config
+# Edit advanced config
 $
 
 #edit config
@@ -141,28 +142,28 @@ $
 	$ y
 
 # ON YOUR DESKTOP
-# procedure at https://rclone.org/remote_setup/
+# Procedure at https://rclone.org/remote_setup/
 # Need to use your desktop connect using hte command 
 $ rclone authorize "OneDrive"
-# authenticate into website using web browser
-# copy the result and paste it in your remote server
+# Authenticate into website using web browser
+# Copy the result and paste it in your remote server
 
-# finish install on server
+# Finish install on server
 
-# create folder to Mount drive
+# Create folder to Mount drive
 $ mkdir ~/OneDrive
 
 # Mount the drive 
-# command may vary depending on your cloud storage solution
-# consult :  https://rclone.org/remote_setup/
-# for OneDrive only :
+# Command may vary depending on your cloud storage solution
+# Consult :  https://rclone.org/remote_setup/
+# For OneDrive only :
 $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
 
 # Congratulation, it is done. 
 ```
 ## Setup Docker on your remote server
 
-1. follow this: https://docs.docker.com/engine/install/ubuntu/
+1. Follow this: https://docs.docker.com/engine/install/ubuntu/
 
 2. Simple test using ruby: https://www.javatpoint.com/docker-ruby-example
 
@@ -183,21 +184,21 @@ $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
         # Run the Ruby Docker container
         $ sudo docker run -it --name my-ruby-app -v /path_to_directory:/app ruby /bin/bash
     
-        # check inside volume container
+        # Check inside volume container
         $ ls /app
     
-        # test your program 
+        # Test your program 
         $ ruby my_file.rb
 
-        #leave with ctrl+d or
+        # Leave with ctrl+d or
         $ exit
 
-        # add new files to /path_to_directory
+        # Add new files to /path_to_directory
 
-        #re enter container
+        # Re enter container
         $ sudo docker start -i my-ruby-app
 
-        # clean unused  containers and volumes
+        # Clean unused  containers and volumes
         $ docker system prune -a
         $ docker volume prune
     ```
@@ -214,7 +215,7 @@ $ y
 $
 $
 
-#copy from: 
+# Copy from: 
 $ cat ~/.ssh/id_rsa.pub
 
 # go to Github account
@@ -233,13 +234,13 @@ $ ssh-keygen -t rsa -b 4096
 $
 $
 $
-# copy output from
+# Copy output from
 $ cat .ssh/id_rsa.pub
-# create authorized host list
+# Create authorized host list
 $ sudo nano ~/.ssh/authorized_keys
-# copy SSH public key into nano
+# Copy SSH public key into nano
 # Ctrl+O then press Enter to save. Ctrl+X to close.
-# permission on file (IMPORTANT)
+# Permission on file (IMPORTANT)
 $ sudo chmod 600 ~/.ssh/authorized_keys
 $ Exit
 ```
