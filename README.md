@@ -64,7 +64,9 @@ Alternative to kamatera :
 
 recommanded usage : Working on your current projects
 
-https://github.com/astrada/google-drive-ocamlfuse/wiki/Installation
+usefull links:
+- https://github.com/astrada/google-drive-ocamlfuse/wiki/Installation
+- https://github.com/astrada/google-drive-ocamlfuse/wiki/Headless-Usage-&-Authorization
 
 ```bash
 
@@ -242,7 +244,7 @@ $ sudo chmod 600 ~/.ssh/authorized_keys
 $ Exit
 ```
 
-### set up Vscode 
+### Set up Vscode 
 
 1. Download vscode
 2. Set up Sync via github account to synchronise extension and parameters 
