@@ -237,6 +237,7 @@ $ cat ~/.ssh/id_rsa.pub
 
 ### Access you server from window without password: 
 
+``$ ``  means press enter
 ```bash
 # open powershell and generate ssh
 $ ssh-keygen -t rsa -b 4096
