@@ -19,7 +19,7 @@ This solution works for students who wish to setup an environment to improve the
 ```
 ### Project benefits:
 
-- Your codebase via cloud on a Ubuntu server using the utility ``rclone``;
+- Your codebase via cloud on a Ubuntu server using utility like ``rclone`` or ``google-drive-ocamlfuse``;
 - Server to compile and run your code;
 - Docker will allow to have a clean and reproductible environment;
 - Git (to push on selected projects using a milestone logic);
