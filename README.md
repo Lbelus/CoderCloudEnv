@@ -282,6 +282,9 @@ $ sudo chmod 600 ~/.ssh/authorized_keys
 
 $ Exit
 ```
+## Manage your server and its process
+
+https://www.cyberciti.biz/faq/how-to-check-running-process-in-ubuntu-linux-using-command-line/
 
 # On your desktop
 
