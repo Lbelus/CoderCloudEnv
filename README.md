@@ -273,6 +273,9 @@ run it
 ```
 run the executable each time you need to sync your work_floder with your container volume. 
 
+alternative : tested 
+https://github.com/rsnapshot/rsnapshot
+
 ## Setup your SSH
 
 ### PERSONAL SSH for github
