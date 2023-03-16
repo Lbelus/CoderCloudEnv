@@ -1,13 +1,12 @@
 # How to put your coding environment in the cloud
 
-## introduction
+## Introduction
 
 This solution works for students who wish to setup an environment to improve their working condition.
 
 -> Current cost in 2023 : 6$ or 4$ per month.
 
 ### General overview:
-
 ```
       ┌──►Codebase on cloud───┐
       │                       │
@@ -63,10 +62,30 @@ Alternative to kamatera :
 
 ### Google drive with google-drive-ocamlfuse
 
+recommanded usage : Working on your current projects
 
+https://github.com/astrada/google-drive-ocamlfuse/wiki/Installation
 
+```bash
+
+$ sudo add-apt-repository ppa:alessandro-strada/ppa
+$ sudo apt-get update
+$ sudo apt-get install google-drive-ocamlfuse
+
+# follow steps on https://github.com/astrada/google-drive-ocamlfuse/wiki/Headless-Usage-&-Authorization you will have to create Oauth client ID.
+
+$ google-drive-ocamlfuse -headless -label me -id ##yourClientID##.apps.googleusercontent.com -secret ###yoursecret##### 
+#click on link and authorize 
+#copy verification code into terminal
+
+# create a dir
+mkdir ~/google-drive
+# mount the drive
+google-drive-ocamlfuse -label me ~/google-drive
+```
 
 ### OneDrive with rclone
+
 recommanded usage : archive for old project and files
 ```
 For this part we are going to mount OneDrive on your Ubuntu server using rclone
@@ -148,35 +167,37 @@ $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
 3. Manage your image and containers : https://www.freecodecamp.org/news/where-are-docker-images-stored-docker-container-paths-explained/#:~:text=The%20storage%20location%20of%20Docker%20images%20and%20containers&text=Ubuntu%3A%20%2Fvar%2Flib%2F,Windows%3A%20C%3A%5CProgramData%5CDockerDesktop
 
 4. Get quickly started with ruby on Docker on your remote server : 
+    
     ```bash
-    # Pull the Ruby Docker Image
-    $ sudo docker pull ruby
-    
-    # Create a directory on your host machine to access from container
-    $ mkdir /path_to_directory
-    
-    # Create a test ruby my_file.rb with a puts "hello"
-    
-    # Run the Ruby Docker container
-    $ sudo docker run -it --name my-ruby-app -v /path_to_directory:/app ruby /bin/bash
-    
-    # check inside volume container
-    $ ls /app
-    
-    # test your program 
-    $ ruby my_file.rb
 
-    #leave with ctrl+d or
-    $ exit
+        # Pull the Ruby Docker Image
+        $ sudo docker pull ruby
+    
+        # Create a directory on your host machine to access from container
+        $ mkdir /path_to_directory
+    
+        # Create a test ruby my_file.rb with a puts "hello"
+    
+        # Run the Ruby Docker container
+        $ sudo docker run -it --name my-ruby-app -v /path_to_directory:/app ruby /bin/bash
+    
+        # check inside volume container
+        $ ls /app
+    
+        # test your program 
+        $ ruby my_file.rb
 
-    # add new files to /path_to_directory
+        #leave with ctrl+d or
+        $ exit
 
-    #re enter container
-    $ sudo docker start -i my-ruby-app
+        # add new files to /path_to_directory
 
-    # clean unused  containers and volumes
-    $ docker system prune -a
-    $ docker volume prune
+        #re enter container
+        $ sudo docker start -i my-ruby-app
+
+        # clean unused  containers and volumes
+        $ docker system prune -a
+        $ docker volume prune
     ```
 
 ## Setup your SSH
@@ -244,4 +265,4 @@ $ Exit
 
 
 <span><i>Made at <a href='https://qwasar.io'>Qwasar SV -- Software Engineering School</a></i></span>
-<span><img alt='Qwasar SV -- Software Engineering School's Logo' src='https://storage.googleapis.com/qwasar-public/qwasar-logo_50x50.png' width='20px'></span>
+<span><img alt='Qwasar SV -- Software Engineering School's Logo' src='https://storage.googleapis.com/qwasar-public/
