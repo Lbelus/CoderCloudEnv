@@ -270,7 +270,7 @@ $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
 	```
 
 ## Mirror your Google-drive work_folder with your docker host volume
-
+*******RSYNC CAUSE KERNEL MEM LEAK******* NEED TO INVESTIGATE
 1. Create my_mirror.sh file and copy following code 
 ```bash
 #!/bin/bash
