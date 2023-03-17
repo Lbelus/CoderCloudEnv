@@ -295,7 +295,7 @@ rsync -av --delete --relative "$SRC_DIR" "$TARGET_DIR"
 # "$SRC_DIR": the source directory (only includes the work_folder directory)
 # "$TARGET_DIR": the target directory
 ```
-make you .sh an executable
+make you my_mirror_loop_.sh an executable
 ```
 chmod +x my_mirror.sh 
 ```
@@ -310,7 +310,32 @@ https://github.com/rsnapshot/rsnapshot
 
 ## Ongoing project automate sync 
 
+tmp fix 
 
+create .sh file
+
+```bash
+#!/bin/bash
+
+# The script to execute every second
+script_to_execute="/path/to/your/script.sh"
+
+# Infinite loop to execute the script every second
+while true; do
+  # Execute the script
+  bash "$script_to_execute"
+
+  # Sleep for 1 second
+  sleep 1
+done
+```
+change persmissions for file. 
+```
+chmod +x my_mirror_loop_.sh
+
+run it
+```
+./my_mirror_loop.sh
 ```
   ┌────────┬────────────────┬───────────────────────────────────┐
   │        │                │                                   │
