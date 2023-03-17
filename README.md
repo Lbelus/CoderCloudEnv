@@ -312,27 +312,25 @@ https://github.com/rsnapshot/rsnapshot
 
 tmp fix 
 
-create .sh file
+create my_mirror_loop.sh file
 
 ```bash
 #!/bin/bash
 
-# The script to execute every second
 script_to_execute="/path/to/your/script.sh"
 
-# Infinite loop to execute the script every second
 while true; do
-  # Execute the script
+
   bash "$script_to_execute"
 
-  # Sleep for 1 second
-  sleep 1
+  sleep 2
 done
 ```
+
 change persmissions for file. 
 ```
-chmod +x my_mirror_loop_.sh
-
+chmod +x my_mirror_loop.sh
+```
 run it
 ```
 ./my_mirror_loop.sh
