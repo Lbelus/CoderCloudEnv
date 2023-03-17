@@ -357,8 +357,8 @@ https://www.cyberciti.biz/faq/how-to-check-running-process-in-ubuntu-linux-using
 ### The Core Team
 * [Lorris BELUS](//github.com/Lbelus) - Developer
 
-## Contributor
-* @kahala - Developer
+### Contributor
+* @kahala(//github.com/kahala) - Developer
 
 <span><i>Made at <a href='https://qwasar.io'>Qwasar SV -- Software Engineering School</a></i></span>
 <span><img alt='Qwasar SV -- Software Engineering School's Logo' src='https://storage.googleapis.com/qwasar-public/
