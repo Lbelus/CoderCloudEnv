@@ -317,12 +317,10 @@ create my_mirror_loop.sh file
 ```bash
 #!/bin/bash
 
-script_to_execute="/path/to/your/script.sh"
+script_to_execute="./my_mirror.sh"
 
 while true; do
-
-  bash "$script_to_execute"
-
+  $script_to_execute
   sleep 2
 done
 ```
