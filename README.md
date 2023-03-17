@@ -53,6 +53,7 @@ Connect to server (root is default user) :
 Alternative to kamatera :
 
 - https://www.paperspace.com/pricing
+- https://www.vultr.com/pricing/
 - AWS
 - Azure
 - Google
