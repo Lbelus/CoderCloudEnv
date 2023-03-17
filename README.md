@@ -27,6 +27,37 @@ This solution is suitable for students who want to create a setup that enhances 
 
 You can use any PC and be operational in a matter of minutes, your code is remote and safe, your coding environment is clean and reproductible.
 
+
+### Containers and server relation 
+
+```
+  ┌────────┬────────────────┬───────────────────────────────────┐
+  │        │                │                                   │
+  │        │                │                                   │
+  │   PC   │     User       │     Modify file                   │
+  │        │                │                                   │
+  ├────────┼────────────────┼──────   │                         │
+  │        │                │         ▼                         │
+  │ Server │  Cloud volume  │     Update cloud                  │
+  │        │                │                                   │
+  │        │                │         │                         │
+  │        │                │         ▼                         │
+  │        │                │     Perform checksum  ◄──────┐    │
+  │        │                │                              │    │
+  │        │                │         │                    │No  │
+  │        │                │         ▼                    │    │
+  │        │                │     CheckSum has changed ?───┘    │
+  │        │                │                                   │
+  │        ├────────────────┼─────    │ Yes                     │
+  │        │Container volume│         ▼                         │
+  │        │                │     perform Sync                  │
+  │        │                │                                   │
+  │        │                │                                   │
+  │        │                │                                   │
+  └────────┴────────────────┴───────────────────────────────────┘
+```
+
+
 ## Create your server with kamatera
 
 Go to ``https://www.kamatera.com/express/compute/``:
@@ -276,6 +307,39 @@ run the executable each time you need to sync your work_floder with your contain
 
 alternative : tested 
 https://github.com/rsnapshot/rsnapshot
+
+## Ongoing project automate sync 
+
+
+```
+  ┌────────┬────────────────┬───────────────────────────────────┐
+  │        │                │                                   │
+  │        │                │                                   │
+  │   PC   │     User       │     Modify file                   │
+  │        │                │                                   │
+  ├────────┼────────────────┼──────   │                         │
+  │        │                │         ▼                         │
+  │ Server │  Cloud volume  │     Update cloud                  │
+  │        │                │                                   │
+  │        │                │         │                         │
+  │        │                │         ▼                         │
+  │        │                │     Perform checksum  ◄──────┐    │
+  │        │                │                              │    │
+  │        │                │         │                    │No  │
+  │        │                │         ▼                    │    │
+  │        │                │     CheckSum has changed ?───┘    │
+  │        │                │                                   │
+  │        ├────────────────┼─────    │ Yes                     │
+  │        │Container volume│         ▼                         │
+  │        │                │     perform Sync                  │
+  │        │                │                                   │
+  │        │                │                                   │
+  │        │                │                                   │
+  └────────┴────────────────┴───────────────────────────────────┘
+```
+
+
+
 
 ## Setup your SSH
 
