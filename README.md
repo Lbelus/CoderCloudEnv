@@ -409,6 +409,12 @@ $ Exit
 ```
 ## Manage your server and its process
 
+shorten prompt : 
+```bash
+PROMPT_DIRTRIM=1 
+```
+or copy inside ``.bashrc`` file
+
 https://www.cyberciti.biz/faq/how-to-check-running-process-in-ubuntu-linux-using-command-line/
 
 # On your desktop
