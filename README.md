@@ -268,6 +268,30 @@ $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
 		# Extract the executable file
 		$ docker cp <container_id>:/c/my_test /path_to_directory
 	```
+	or work directly from the container.
+	create a Dockerfile
+	```Dockerfile
+		FROM ubuntu:latest
+		RUN apt-get update && apt-get install -y llvm clang build-essential
+	```
+	- From directory run 
+	```bash
+		# Build the Docker image
+		$ docker build -t my-llvm-image .
+		
+		# If you encounter an issue check image names
+		$ docker images
+		
+		# Create a container with a linked volume
+		$ docker run -it -v ~/path_to_directory:/c my-llvm-image /bin/bash
+		
+		# Go to directory
+		$ cd c/
+		
+		# Compile using your Makefile
+		$ make
+		
+		```
 
 ## Mirror your Google-drive work_folder with your docker host volume
 *******RSYNC CAUSE KERNEL MEM LEAK******* NEED TO INVESTIGATE
