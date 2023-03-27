@@ -1,12 +1,18 @@
 # How to put your coding environment in the cloud
 
 ## Introduction
+### General overview
+### Project benefits:
+## Create your server with kamatera
+## Setup your Codebase on cloud
+
+## Introduction
 
 This solution is suitable for students who want to create a setup that enhances their working conditions.
 
 -> Current cost in 2023 : 6$ or 4$ per month.
 
-### General overview:
+### General overview
 ```
       ┌──►Codebase on cloud───┐
       │                       │
@@ -99,28 +105,30 @@ Please feel free to use any other solution.
 
 ### Google drive with google-drive-ocamlfuse
 
-Recommanded usage : Working on your current projects
+#### <u>Recommanded usage : Working directory</u>
 
 Useful links:
 - https://github.com/astrada/google-drive-ocamlfuse/wiki/Installation
 - https://github.com/astrada/google-drive-ocamlfuse/wiki/Headless-Usage-&-Authorization
 
 ```bash
+sudo add-apt-repository ppa:alessandro-strada/ppa
+sudo apt-get update
+sudo apt-get install google-drive-ocamlfuse
+```
+- Follow steps on https://github.com/astrada/google-drive-ocamlfuse/wiki/Headless-Usage-&-Authorization you will have to create Oauth client ID.
 
-$ sudo add-apt-repository ppa:alessandro-strada/ppa
-$ sudo apt-get update
-$ sudo apt-get install google-drive-ocamlfuse
-
-# Follow steps on https://github.com/astrada/google-drive-ocamlfuse/wiki/Headless-Usage-&-Authorization you will have to create Oauth client ID.
-
-$ google-drive-ocamlfuse -headless -label me -id ##yourClientID##.apps.googleusercontent.com -secret ###yoursecret##### 
-# Click on link and authorize 
-# Copy verification code into terminal
-
-# Create a dir
+```bash
+google-drive-ocamlfuse -headless -label me -id XXyourClientIDXX.apps.googleusercontent.com -secret XXXyoursecretXXXX
+``` 
+- Click on link and authorize 
+- Copy verification code into terminal
+- Create a dir
+```bash
 mkdir ~/google-drive
-
-# Mount the drive
+```
+- Mount the drive
+```bash
 google-drive-ocamlfuse -label me ~/google-drive
 ```
 
@@ -200,8 +208,112 @@ $ mkdir ~/OneDrive
 $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
 
 # Create .sh file to hold that last command, you will have to run each time your reboot your server
-
 ```
+
+## Create a shared volume on your server with samba
+
+
+### Create a shared volume
+Useful links :
+- https://ubuntu.com/server/docs/samba-file-server
+
+1. Update your server 
+  ```bash
+  sudo apt update
+  sudo apt upgrade
+  ```
+
+2. Install samba
+  ```bash
+  sudo apt install samba
+  ```
+
+3. Modify /etc/samba/smb.conf with vim or nano 
+  ```bash
+  vim /etc/samba/smb.conf
+  ```
+  ```bash
+  sudo nano /etc/samba/smb.conf
+  ```
+  - ctrl+o, enter and then ctrl+x;
+4. Add this text at the end of the file.
+  ```
+  [share]
+    comment = Ubuntu File Server Share
+    path = /srv/samba/share
+    browsable = yes
+    guest ok = yes
+    read only = no
+    create mask = 0755
+  ```
+5. Create a shared folder and manage its permissions.
+  ```bash
+  sudo mkdir -p /srv/samba/share
+  sudo chown nobody:nogroup /srv/samba/share/
+  ```
+6. Restart services to enable new configuration.
+  ```
+  sudo systemctl restart smbd.service nmbd.service
+  ```
+
+### Manage user and access
+
+1. Create a new user
+  ```bash
+  sudo adduser sambauser
+  ```
+2. Create an access to samba
+  ```bash
+  sudo smbpasswd -a sambauser
+  ```
+3. Modify the /etc/samba/smb.conf file
+```
+[share]
+  comment = Ubuntu File Server Share
+  path = /srv/samba/share
+  browsable = yes
+  guest ok = no
+  read only = no
+  create mask = 0664
+  directory mask = 2775
+  valid users = sambauser
+```
+4. Restart services to enable new configuration.
+  ```
+  sudo systemctl restart smbd.service nmbd.service
+  ```
+### TROUBLESHOOT: I don't have the permissions to modify the files from windows
+
+1. Try running :
+```
+sudo find /srv/samba/share -type f -exec chmod 664 {} \;
+sudo find /srv/samba/share -type d -exec chmod 2775 {} \;
+```
+2. If the problem persist, check the group that own the dir.
+```bash
+ls -ld /srv/samba/share
+``` 
+3. Check samba user group 
+```bash
+sudo pdbedit -u sambauser -v
+```
+4. If needed change samba user group 
+```bash
+sudo usermod -a -G groupname sambauser
+```
+5. Restart services to enable new configuration.
+  ```
+  sudo systemctl restart smbd.service nmbd.service
+  ```
+6. Disconnect and reconnect to he shared folder on windows
+
+
+### connect on windows
+
+open the file explorer and type your ip
+type your credential if you created a user with an access password
+
+
 ## Setup Docker on your remote server
 
 1. Follow this: https://docs.docker.com/engine/install/ubuntu/
@@ -212,86 +324,102 @@ $ rclone --vfs-cache-mode writes mount onedrive: ~/OneDrive
 
 4. Get quickly started with ruby using Docker on your remote server : 
     
-    ```bash
-
-        # Pull the Ruby Docker Image
-        $ sudo docker pull ruby
-    
-        # Create a directory on your host machine to access from container
-        $ mkdir /path_to_directory
-    
-        # Create a test ruby my_file.rb with a puts "hello"
-    
-        # Run the Ruby Docker container
-        $ sudo docker run -it --name my-ruby-app -v /path_to_directory:/app ruby /bin/bash
-    
-        # Check inside volume container
-        $ ls /app
-    
-        # Test your program 
-        $ ruby my_file.rb
-
-        # Leave with ctrl+d or
-        $ exit
-
-        # Add new files to /path_to_directory
-
-        # Re enter container
-        $ sudo docker start -i my-ruby-app
-
-        # Clean unused  containers and volumes
-        $ docker system prune -a
-        $ docker volume prune
-    ```
+    - Pull the Ruby Docker Image
+      ```bash
+      sudo docker pull ruby
+      ```
+    - Create a directory on your host machine to access from container
+      ```bash
+      mkdir /path_to_directory
+      ```
+    - Create a test ruby my_file.rb with a puts "hello"
+    - Run the Ruby Docker container
+      ```bash
+      sudo docker run -it --name my-ruby-app -v /path_to_directory:/app ruby /bin/bash
+      ```
+    - Check inside volume container
+      ```bash
+      ls /app
+      ```
+    - Test your program 
+      ```bash
+      ruby my_file.rb
+      ```
+    - Leave with ctrl+d or
+      ```bash
+      exit
+      ```
+    - Add new files to /path_to_directory (work also while container is running)
+    - Re enter container
+      ```bash
+      sudo docker start -i my-ruby-app
+      ```
+    - Clean unused  containers and volumes
+      ```bash 
+      docker system prune -a
+      docker volume prune
+      ```
 
 5. Get quickly started with llvm and c using Docker on your remote server : 
 	- Create a ``my_test.c`` file with a ``printf("hello world")``;
 	- Create a ``dockerfile``;
-	```Dockerfile
-		FROM ubuntu:latest
-		RUN apt-get update && apt-get install -y llvm clang
-	```
-	- From directory run 
-	```bash
-		# Build the Docker image
-		$ docker build -t my-llvm-image .
-		
-		# If you encounter an issue check image names
-		$ docker images
-		
-		# compile your C programs by running a new container
-		$ docker run -v ~/path_to_directory:/c my_llvm_image clang /c/my_test.c -o /c/my_test
-		
-		# Find container ID and copy it
-		$ docker ps -a
-		
-		# Extract the executable file
-		$ docker cp <container_id>:/c/my_test /path_to_directory
-	```
-	or work directly from the container.
-	create a Dockerfile
-	```Dockerfile
-		FROM ubuntu:latest
-		RUN apt-get update && apt-get install -y llvm clang build-essential
-	```
-	- From directory run 
-	```bash
-		# Build the Docker image
-		$ docker build -t my-llvm-image .
-		
-		# If you encounter an issue check image names
-		$ docker images
-		
-		# Create a container with a linked volume
-		$ docker run -it -v ~/path_to_directory:/c my-llvm-image /bin/bash
-		
-		# Go to directory
-		$ cd c/
-		
-		# Compile using your Makefile
-		$ make
-		
-		```
+	    ```Dockerfile
+		  FROM ubuntu:latest
+		  RUN apt-get update && apt-get install -y llvm clang
+	    ```
+	From directory run: 
+	  - Build the Docker image
+      ```bash
+      docker build -t my-llvm-image .
+      ```
+    - If you encounter an issue check image names
+      ```bash
+		  docker images
+      ```
+    - Compile your C programs by running a new container
+	    ```bash	
+      docker run -v ~/path_to_directory:/c my_llvm_image clang /c/my_test.c -o /c/my_test
+	    ```	
+    - Find container ID and copy it
+	    ```bash
+      docker ps -a
+      ```
+    - Extract the executable file
+	    ```bash
+		  docker cp <container_id>:/c/my_test /path_to_directory
+	    ```
+
+    
+6. Get quickly started with llvm and c using Docker on your remote server : 
+  - create a Dockerfile
+	    
+      ```Dockerfile
+		  FROM ubuntu:latest
+		  RUN apt-get update && apt-get install -y llvm clang build-essential
+	  ```
+  From directory run:
+  - Build the Docker image
+
+      ```bash
+		  docker build -t my-llvm-image .
+      ```
+	
+    - If you encounter an issue check image names
+      ```bash
+		  docker images
+      ```
+    - Create a container with a linked volume
+	    ```bash
+		  docker run -it -v ~/path_to_directory:/c my-llvm-image /bin/bash
+		  ```
+    - Go to directory
+		  ```bash
+      cd c/
+		  ```
+    - Compile using your Makefile
+      ```bash
+      make
+      ```
 
 ## Mirror your Google-drive work_folder with your docker host volume
 *******RSYNC CAUSE KERNEL MEM LEAK******* NEED TO INVESTIGATE
@@ -327,7 +455,7 @@ run it
 ```
 ./my_mirror.sh.
 ```
-run the executable each time you need to sync your work_floder with your container volume. 
+run the executable each time you need to sync your work_folder with your container volume. 
 
 alternative : tested 
 https://github.com/rsnapshot/rsnapshot
@@ -464,9 +592,13 @@ https://www.cyberciti.biz/faq/how-to-check-running-process-in-ubuntu-linux-using
 
 ## Symlink to navigate into vscode on windows
 1. Create a dir to hold symlinks to every cloud storage solution
-1. Open prowershell ad an administrator 
-1. ``$ New-Item -Path new_symlink_name -ItemType SymbolicLink -Value path_to_directory``
+2. Open prowershell as an administrator 
+3. ``$ New-Item -Path new_symlink_name -ItemType SymbolicLink -Value path_to_directory``
+4. Do the same with cmdprompt as administrator for a shared directory. 
+5.  ``mklink /D C:\Users\lbs_h\Codebase\new_work_dir \\IP_ADRESS\share``
+## 
 
+mklink /D C:\Users\YourUsername\Documents\MySharedFolder \\servername\share
 
 ### The Core Team
 * [Lorris BELUS](//github.com/Lbelus) - Developer
