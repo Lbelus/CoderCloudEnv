@@ -421,6 +421,37 @@ type your credential if you created a user with an access password
       make
       ```
 
+6. Get quickly started with python and langchain using Docker on your remote server :
+  - create a Dockerfile
+	    
+      ```Dockerfile
+		# Use the official image as a parent image
+		FROM python:latest
+
+		# Set the working directory in the container
+		WORKDIR /usr/src/app
+
+		# Copy the requirements file into the container
+		COPY requirements.txt .
+
+		# Install any needed packages specified in requirements.txt
+		RUN pip install --no-cache-dir -r requirements.txt
+	  ```
+          - If you encounter an issue check image names
+      ```bash
+		  docker images
+      ```
+      from Dockefile dir, build the Docker image, run docker "build -t your-image-name ." in your terminal. 
+    - Create a container with a linked volume
+	    ```bash
+		  docker run -it -v /path/to/your/local/dir:/usr/src/app your-image-name /bin/bash
+		  ```
+    - run python
+      ```bash
+      python3
+      ```
+
+
 ## Mirror your Google-drive work_folder with your docker host volume
 *******RSYNC CAUSE KERNEL MEM LEAK******* NEED TO INVESTIGATE
 1. Create my_mirror.sh file and copy following code 
