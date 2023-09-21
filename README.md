@@ -566,6 +566,26 @@ $ cat ~/.ssh/id_rsa.pub
 # and paste
 ```
 
+### alternate and more secure way for github
+```bash
+$ ssh-keygen -t ed25519 -C "email@prov.com"
+$ 
+$
+$
+
+# copy from
+$ cat ~/.ssh/id_ed25519.pub
+
+# go to Github account
+# ->Settings
+# ->*SSH and GPG section 
+# ->New SSH key button
+# and paste
+
+$ ssh-keyscan github.com >> ~/.ssh/known_hosts
+$ ssh -T git@github.com
+```
+
 ### Access you server from windows without password: 
 
 ``$ ``  means press enter
